@@ -24,6 +24,7 @@ func main() {
 	// walk https://golang.org/pkg/path/filepath/#Walk
 	// stat https://golang.org/src/os/stat.go?s=642:683#L10
 	args := os.Args[1:]
+	fmt.Println("path,mode,uid,gid,size,atime,mtime,ctime")
 	for _, arg := range args {
 		if _, err := os.Stat(arg); os.IsNotExist(err) {
 			continue
