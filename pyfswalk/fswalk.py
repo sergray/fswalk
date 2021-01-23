@@ -1,12 +1,9 @@
-#
-import csv
+"""Recursively walk down the paths provided as arguments and print out CSV with stats of the files"""
 import os
 import sys
 
-columns = 'path mode uid gid size atime mtime ctime'.split(' ')
-
-writer = csv.writer(sys.stdout)
-
+header = 'path,mode,uid,gid,size,atime,mtime,ctime'
+print(header)
 
 for dest in sys.argv[1:]:
 	if not os.path.isdir(dest):
@@ -19,8 +16,10 @@ for dest in sys.argv[1:]:
 			except Exception as exc:
 				print(exc, file=sys.stderr)
 			try:
-				writer.writerow(
-					(path, stat.st_mode, stat.st_uid, stat.st_gid, stat.st_size, stat.st_atime, stat.st_mtime, stat.st_ctime)
+				print(
+					"%s,%o,%d,%d,%d,%d,%d,%d" % (
+						path, stat.st_mode, stat.st_uid, stat.st_gid, stat.st_size, stat.st_atime, stat.st_mtime, stat.st_ctime
+					)
 				)
 			except Exception as exc:
 				print(exc, file=sys.stderr)
