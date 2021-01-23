@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Recursively walk down the paths provided as arguments and print out CSV with stats of the files"""
 import os
 import sys
